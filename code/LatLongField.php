@@ -55,7 +55,6 @@ class LatLongField extends FieldGroup {
 		Requirements::javascript( THIRDPARTY_DIR.'/jquery/jquery.js' );
 		Requirements::javascript( THIRDPARTY_DIR.'/jquery-livequery/jquery.livequery.js' );
 		Requirements::javascript( THIRDPARTY_DIR.'/jquery-metadata/jquery.metadata.js' );
-		//Requirements::javascript(MAPPABLE_MODULE_PATH.'/javascript/mapField.js');
 
 		$js = '
 		<script type="text/javascript">
@@ -66,35 +65,34 @@ var zoomFieldName = "'.$this->zoomField.'";
 	';
 
 		Requirements::javascript('mappable-light/javascript/mapField.js' );
-
-		//$this->FieldList()->push( new MapField( 'GoogleMap', 'GoogleMap' ) );
+		Requirements::css('mappable-light/css/mapField.css');
 
 		$attributes = array(
-            'class' => 'editableMap',
-            'id' => 'GoogleMap',
-            'data-LatFieldName' => $this->latField,
+			'class' => 'editableMap',
+			'id' => 'GoogleMap',
+			'data-LatFieldName' => $this->latField,
 			'data-LonFieldName' => $this->longField,
 			'data-ZoomFieldName' => $this->zoomField,
 			'data-UseMapBounds' => false
-        );
+     );
 
-        Requirements::css('mappable-light/css/mapField.css');
-        $guidePointsJSON = '';
-        if (isset($this->guidePoints)) {
-        	$guidePointsJSON = json_encode($this->guidePoints);
-        	$attributes['data-GuidePoints'] = $guidePointsJSON;
+        
+		$guidePointsJSON = '';
+		if (isset($this->guidePoints)) {
+			$guidePointsJSON = json_encode($this->guidePoints);
+			$attributes['data-GuidePoints'] = $guidePointsJSON;
 
-        	// we only wish to change the bounds to those of all the points iff the item currently has no location
-        	//$attributes['data-useMapBounds'] = true;
-        	error_log('**** GUIDE POINTS SET ****');
-        	error_log($guidePointsJSON);
-        }
-        $content = '<div class="editableMapWrapper">' . $this->createTag(
-            "div",
-            $attributes
-        ) . '</div>';
+			// we only wish to change the bounds to those of all the points iff the item currently has no location
+			//$attributes['data-useMapBounds'] = true;
+			error_log('**** GUIDE POINTS SET ****');
+			error_log($guidePointsJSON);
+		}
+		$content = '<div class="editableMapWrapper">' . $this->createTag(
+				"div",
+				$attributes
+		) . '</div>';
 
-        $this->FieldList()->push( new LiteralField( 'locationEditor', $content ) );
+		$this->FieldList()->push( new LiteralField( 'locationEditor', $content ) );
 
 
 
