@@ -3,7 +3,7 @@
 _A fork from Uncle Cheese's [Mappable module](https://github.com/unclecheese/Mappable) module, intended to be lightweight and only offer backend code._
 
 
-**NOTE:** This is under active development.
+**NOTE:** This is under active development - and certain parts are hardcoded.
 
 
 ## Getting started

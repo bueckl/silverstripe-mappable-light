@@ -40,7 +40,7 @@ class LatLongField extends FieldGroup {
 
 		// hide the lat long and zoom fields from the interface
 		foreach ( $this->FieldList() as $fieldToHide ) {
-			$fieldToHide->addExtraClass( 'hide' );
+			//$fieldToHide->addExtraClass( 'hide' );
 		}
 
 
@@ -50,7 +50,10 @@ class LatLongField extends FieldGroup {
 
 
 	public function hasData() {return true;}
-
+	
+	/**
+	 * Field Holer
+	 */
 	public function FieldHolder( $properties = array() ) {
 		Requirements::javascript( THIRDPARTY_DIR.'/jquery/jquery.js' );
 		Requirements::javascript( THIRDPARTY_DIR.'/jquery-livequery/jquery.livequery.js' );
@@ -87,6 +90,12 @@ var zoomFieldName = "'.$this->zoomField.'";
 			error_log('**** GUIDE POINTS SET ****');
 			error_log($guidePointsJSON);
 		}
+		
+		//$attributes['style'] = 'height:300px;width:300px;';
+		
+		//Map
+		//NOTE: The map sometimes has problems on first render
+		//temporary fix is to resize the window
 		$content = '<div class="editableMapWrapper">' . $this->createTag(
 				"div",
 				$attributes
@@ -106,6 +115,12 @@ var zoomFieldName = "'.$this->zoomField.'";
 
 		$this->FieldList()->push( new LiteralField( 'mapSearch', $content2 ) );
 
+		//hardcoding address - for now
+		$this->FieldList()->push(
+			TextareaField::create('Address')
+		);
+		
+		
 		return parent::FieldHolder();
 	}
 
