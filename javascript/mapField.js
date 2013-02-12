@@ -243,9 +243,14 @@ The following variables are set up by a LiteralField in the LatLongField field, 
 
       console.log("Set coord by drag");
 
-      var latField = $('input[name="$LatFieldName"]');
-      var lonField = $('input[name="$LonFieldName"]');
-      var zoomField = $('input[name="$ZoomFieldName"]');
+//      var latField = $('input[name="$LatFieldName"]');
+//      var lonField = $('input[name="$LonFieldName"]');
+//      var zoomField = $('input[name="$ZoomFieldName"]');
+	var gm = $('#GoogleMap');
+      var latField = $('input[name='+gm.attr('data-latfieldname')+']'); //$('input[name="$LatFieldName"]');
+      var lonField = $('input[name='+gm.attr('data-lonfieldname')+']'); // $('input[name="$LonFieldName"]');
+      var zoomField = $('input[name='+gm.attr('data-zoomfieldname')+']'); // $('input[name="$ZoomFieldName"]');
+
 
       var lat = event.latLng.lat();
       var lng = event.latLng.lng();
@@ -339,7 +344,11 @@ The following variables are set up by a LiteralField in the LatLongField field, 
 
        $('#searchLocationButton').livequery('click', function(e) {
          // get the data needed to ask coords
-         var location = $('#location_search').val();
+         //var location = $('#location_search').val();
+				 
+				 //hardcoding to address:
+				 var location = $('[name="Address"]').val();
+				 
          searchForAddress(location);
          return false;
        });
@@ -356,12 +365,16 @@ The following variables are set up by a LiteralField in the LatLongField field, 
          var latlng = new google.maps.LatLng(lat, lon);
          statusMessage("Setting map to " + address);
          $('.geocodedSearchResults').html('');
-         $('#Form_EditForm_Latitude').val(lat);
-         $('#Form_EditForm_Longitude').val(lon);
+//         $('#Form_EditForm_Latitude').val(lat);
+//         $('#Form_EditForm_Longitude').val(lon);
 
-         var latField = $('input[name="$LatFieldName"]');
-         var lonField = $('input[name="$LonFieldName"]');
-         var zoomField = $('input[name="$ZoomFieldName"]');
+//         var latField = $('input[name="$LatFieldName"]');
+//         var lonField = $('input[name="$LonFieldName"]');
+//         var zoomField = $('input[name="$ZoomFieldName"]');
+				 var gm = $('#GoogleMap');
+					var latField = $('input[name='+gm.attr('data-latfieldname')+']'); //$('input[name="$LatFieldName"]');
+					var lonField = $('input[name='+gm.attr('data-lonfieldname')+']'); // $('input[name="$LonFieldName"]');
+					var zoomField = $('input[name='+gm.attr('data-zoomfieldname')+']'); // $('input[name="$ZoomFieldName"]');				 
 
          latField.val(lat);
          lonField.val(lon);

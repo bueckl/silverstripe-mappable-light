@@ -12,3 +12,9 @@
 	width: 700px;
 	float: none;
 }
+
+
+.latlong .fieldgroup-field.first {
+	clear:both;
+	float:none;
+}

@@ -106,19 +106,18 @@ var zoomFieldName = "'.$this->zoomField.'";
 
 
 		$content2 = '<div id="mapSearch">
-		 <input name="location_search" id="location_search" size=80/>
+		 <!--<input name="location_search" id="location_search" size=80/>-->
     	<button class="action" id="searchLocationButton">Search Location Name</button>
       		<div id="mapSearchResults">
       	</div>
     </div>
     ';
 
-		$this->FieldList()->push( new LiteralField( 'mapSearch', $content2 ) );
-
-		//hardcoding address - for now
-		$this->FieldList()->push(
-			TextareaField::create('Address')
-		);
+		
+		$latField = $this->FieldList()->fieldByName($this->latField);
+		
+		//$this->FieldList()->push( new LiteralField( 'mapSearch', $content2 ) );
+		$this->FieldList()->insertBefore( new LiteralField( 'mapSearch', $content2 ), $this->latField );
 		
 		
 		return parent::FieldHolder();
