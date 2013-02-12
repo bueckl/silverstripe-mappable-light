@@ -10,39 +10,41 @@ _A fork from Uncle Cheese's [Mappable module](https://github.com/unclecheese/Map
 
 Implement the `Mappable` interface, example:
 
-	class MemberProfile extends DataObject implements Mappable {
+```php
+class MemberProfile extends DataObject implements Mappable {
 
-	    static $db = array (
-	        'Lat' => 'Varchar',
-	        'Lon' => 'Varchar'
-	        'Type' => "Enum('Farm,Restaurant')"
-	    );
+    static $db = array (
+        'Lat' => 'Varchar',
+        'Lon' => 'Varchar'
+        'Type' => "Enum('Farm,Restaurant')"
+    );
 
-	/* Mappable interface requirements */
+/* Mappable interface requirements */
 
-	    public function getLatitude() {
-	        return $this->Lat;
-	    }
+    public function getLatitude() {
+        return $this->Lat;
+    }
 
-	    public function getLongitude() {
-	        return $this->Lon;
-	    }
+    public function getLongitude() {
+        return $this->Lon;
+    }
 
-	    public function getMapContent() {
-	        return GoogleMapUtil::sanitize($this->renderWith('MapBubbleMember'));
-	    }
+    public function getMapContent() {
+        return GoogleMapUtil::sanitize($this->renderWith('MapBubbleMember'));
+    }
 
-	    public function getMapCategory() {
-	        return $this->Type;
-	    }
+    public function getMapCategory() {
+        return $this->Type;
+    }
 
-	    public function getMapPin() {
-	        return $this->Type."_pin.png";
-	    }
+    public function getMapPin() {
+        return $this->Type."_pin.png";
+    }
 
-	/* end Mappable interface */
+/* end Mappable interface */
 
-	}
+}
+```
 
 Read more on [Uncle Cheese's blog](http://www.leftandmain.com/silverstripe-tutorials/2011/06/14/new-mappable-module-and-some-unsolicited-programming-pedagogy/)
 
