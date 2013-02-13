@@ -16,7 +16,10 @@ The following variables are set up by a LiteralField in the LatLongField field, 
 
 
    
-
+/**
+ * This is called when the google map has been initialized
+ * See below
+ */
 function gmloaded() {
  //console.log('google maps call back');
 	initLivequery();
@@ -387,9 +390,9 @@ function initLivequery() {
 		});
 
 
-		$('#GoogleMap').livequery(function() {
-			 initMap();
-		});
+//		$('#GoogleMap').livequery(function() {
+//			 initMap();
+//		});
 
 	})(jQuery);
 
@@ -401,18 +404,41 @@ function initLivequery() {
 (function($) {
 
 	function loadGoogleMapsAPI() {
-		var script = document.createElement("script");
-		script.type = "text/javascript";
-		script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=gmloaded";
-		document.body.appendChild(script);
+		console.log(gMapsAPIloaded);
+		if (gMapsAPIloaded == false) {
+			var script = document.createElement("script");
+			script.type = "text/javascript";
+			script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=gmloaded";
+			document.body.appendChild(script);
+
+			gMapsAPIloaded = true;
+		}
 	}
 
+	var gMapsAPIloaded = false;
 
 
 	// deal with document ready - note this only gets called once due to the way silverstripe works, until the CMS is refreshed
 	$(document).ready(function() {
 
+
 		loadGoogleMapsAPI();
+
+		//Waiting with loading the google map until it is visible
+		//ie. it will only be triggered once tab it is under is pressed
+		$.entwine('ss', function($){
+			$('#GoogleMap:visible').entwine({
+				onmatch: function() {
+
+
+					initMap();					
+					
+
+				}
+			});
+
+		});
+
 
 
 
