@@ -14,7 +14,8 @@
 }
 
 
-.latlong .fieldgroup-field.first {
+.latlong .fieldgroup-field.first,
+.latlong .fieldgroup-field.last {
 	clear:both;
 	float:none;
 }
