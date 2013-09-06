@@ -105,7 +105,7 @@ var zoomFieldName = "'.$this->zoomField.'";
 
 
 
-		$content2 = '<div id="mapSearch">
+		$content2 = '<div id="mapSearch" class="field">
 		 <!--<input name="location_search" id="location_search" size=80/>-->
     	<button class="action" id="searchLocationButton">Search Location Name</button>
       		<div id="mapSearchResults">

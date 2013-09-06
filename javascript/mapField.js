@@ -297,8 +297,9 @@ function searchForAddress(address) {
 					} else if (l == 0) {
 						errorMessage("No places found");
 					}
-
-					var html = '<ul class="geocodedSearchResults">';
+					var html = '<div class="geocodedSearchResults field">';
+					html = html +'<p>' + l + ' location(s) found. Please select a location below  by clicking the link:</p>';
+					html = html + '<ul class="">';
 					//mapSearchResults
 					$.each(results, function(index, value) {
 						var address = new Array();
@@ -306,12 +307,14 @@ function searchForAddress(address) {
 							address.push(v.long_name);
 						});
 
-						html = html + '<li lat="' + value.geometry.location.lat() + '" lon="' + value.geometry.location.lng() + '">' + address + "</li>";
+						html = html + '<li lat="' + value.geometry.location.lat() + '" lon="' + value.geometry.location.lng() + '">' + address + ' (<span class="select">select</span>)</li>';
 					});
 
 					html = html + "</ul>";
+					html = html + "</div>";
 
-					$('#mapSearchResults').html(html);
+					//$('#mapSearchResults').html(html);
+					$('#mapSearch').after(html);
 
 
 					//  setMarker(results[0].geometry.location.lat);
