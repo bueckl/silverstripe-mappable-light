@@ -1,17 +1,21 @@
 # Mappable Light
 
-_A fork from Uncle Cheese's [Mappable module](https://github.com/unclecheese/Mappable) module, intended to be lightweight and only offer backend code._
+_A fork from Uncle Cheese's [Mappable module](https://github.com/unclecheese/Mappable) module, intended to be lightweight._
 
 
-**NOTE:** This is under active development, and should be seen as WORK IN PROGRESS.
+**NOTE:** This is under active development, so it's a little rusty ad the edges. You're welcome to contribute.
 
 
 ## Requirements
 
 Silverstripe 3
 
+## Installation
 
-## Getting started
+As the module is defining a `Mappable` interface, the actual setup can differ from installation to installation. Here is a simple way of getting started with it.
+
+
+### Model
 
 Implement the `Mappable` interface, example:
 
@@ -23,6 +27,14 @@ class MemberProfile extends DataObject implements Mappable {
 		'Lon' => 'Varchar'
 		'Address' => 'Text' //not strictly required but here it's used for the backend
 	);
+
+	/**
+	 * Adding the MappableData extension (optional)
+	 * Needed to display $StaticMap and $GoogleMap from the frontend
+	 */
+	static $extensions = array(
+		"MappableData"
+	);	
 
 /* Mappable interface requirements */
 
@@ -52,10 +64,13 @@ Read more on [Uncle Cheese's blog](http://www.leftandmain.com/silverstripe-tutor
 
 
 
-## LatlonField
+### Backend
 
 The included `LatlonField` has been taken from [Gordon Anderson](https://github.com/gordonbanderson)'s fork, and amended.    
-To my opinion the code needs a restructuring. For now it's working for generating a google map and lat/lon coordinates from a google map.
+To my opinion the code needs a restructuring. For now it's working, and has been amended for generating a google map and lat/lon coordinates from a google map.
+
+![LatlonField](docs/img/latlonfield.png)
+
 
 Here is an example on how the `LatlonField` can be integrated:
 
@@ -89,9 +104,7 @@ public function getCMSFields() {
 }		
 ```
 
-### Example of LatlonField in CMS
 
-![LatlonField](docs/img/latlonfield.png)
 
 
 
