@@ -21,7 +21,7 @@ class MemberProfile extends DataObject implements Mappable {
 	static $db = array (
 		'Lat' => 'Varchar',
 		'Lon' => 'Varchar'
-		'Type' => "Enum('Farm,Restaurant')"
+		'Address' => 'Text' //not strictly required but here it's used for the backend
 	);
 
 /* Mappable interface requirements */
@@ -35,18 +35,15 @@ class MemberProfile extends DataObject implements Mappable {
 	}
 
 	public function getMapContent() {
-		return GoogleMapUtil::sanitize($this->renderWith('MapBubbleMember'));
-	}
-
-	public function getMapCategory() {
-		return $this->Type;
+		//below is not currently implemented
+		//return GoogleMapUtil::sanitize($this->renderWith('MapBubbleMember'));
 	}
 
 	public function getMapPin() {
 		return $this->Type."_pin.png";
 	}
 
-/* end Mappable interface */
+/* end Mappable interface requirements */
 
 }
 ```
@@ -63,24 +60,33 @@ To my opinion the code needs a restructuring. For now it's working for generatin
 Here is an example on how the `LatlonField` can be integrated:
 
 ```php
-$fields->addFieldToTab("Root.Location",
-	HeaderField::create('AddressHeading','Location Data')
-);
+public function getCMSFields() {
+	$fields = parent::getCMSFields();
+	$fields->removeByName('Address');
+	$fields->removeByName('Lat');
+	$fields->removeByName('Lon');		
+	
+	$fields->addFieldToTab("Root.Location",
+		HeaderField::create('AddressHeading','Location Data')
+	);
 
-$fields->addFieldToTab("Root.Location",
-	TextareaField::create('Address')
-);
+	$fields->addFieldToTab("Root.Location",
+		TextareaField::create('Address')
+	);
 
-$fields->addFieldToTab("Root.Location",
-	HeaderField::create('LatLonHeading','Calculated Position')
-);
+	$fields->addFieldToTab("Root.Location",
+		HeaderField::create('LatLonHeading','Calculated Position')
+	);
 
-$fields->addFieldToTab("Root.Location", new LatLongField(array(
-		new TextField('Lat','Latitude'),
-		new TextField('Lon','Longitude')
-	),
-	array('Address')
-));
+	$fields->addFieldToTab("Root.Location", new LatLongField(array(
+			new TextField('Lat','Latitude'),
+			new TextField('Lon','Longitude')
+		),
+		array('Address')
+	));		
+
+	return $fields;
+}		
 ```
 
 ### Example of LatlonField in CMS
