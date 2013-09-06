@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Utility for workig with the Google Maps API script (same directory)
+ * Seems a little outdated (as of September 2013), might be good to consider exchanging that API with something like this:
+ * https://github.com/anselmdk/silverstripe-googlemapspage/blob/anselmdk/code/GoogleMapsDecorator.php
+ */
 class GoogleMapUtil
 {
 
