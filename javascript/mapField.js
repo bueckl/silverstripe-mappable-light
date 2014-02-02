@@ -23,7 +23,7 @@ The following variables are set up by a LiteralField in the LatLongField field, 
 function gmloaded() {
  //console.log('google maps call back');
 	initLivequery();
-	//initMap();
+	initMap();
 }
 
 // initialise the map
@@ -415,6 +415,8 @@ function initLivequery() {
 			document.body.appendChild(script);
 
 			gMapsAPIloaded = true;
+		} else {
+			initMap();
 		}
 	}
 
@@ -425,7 +427,7 @@ function initLivequery() {
 	$(document).ready(function() {
 
 
-		loadGoogleMapsAPI();
+		
 
 		//Waiting with loading the google map until it is visible
 		//ie. it will only be triggered once tab it is under is pressed
@@ -433,8 +435,9 @@ function initLivequery() {
 			$('#GoogleMap:visible').entwine({
 				onmatch: function() {
 
+					loadGoogleMapsAPI();
 
-					initMap();					
+					//initMap();					
 					
 
 				}

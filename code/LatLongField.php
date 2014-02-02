@@ -55,7 +55,7 @@ class LatLongField extends FieldGroup {
 	 * Field Holer
 	 */
 	public function FieldHolder( $properties = array() ) {
-		Requirements::javascript( THIRDPARTY_DIR.'/jquery/jquery.js' );
+		//Requirements::javascript( THIRDPARTY_DIR.'/jquery/jquery.js' );
 		Requirements::javascript( THIRDPARTY_DIR.'/jquery-livequery/jquery.livequery.js' );
 		Requirements::javascript( THIRDPARTY_DIR.'/jquery-metadata/jquery.metadata.js' );
 
