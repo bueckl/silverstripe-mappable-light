@@ -3,7 +3,8 @@
 _A fork from Uncle Cheese's [Mappable module](https://github.com/unclecheese/Mappable) module, intended to be lightweight._
 
 
-**NOTE:** This is under active development, so it's a little rusty ad the edges. You're welcome to contribute.
+**NOTE:** This is under active development, so it's a little rusty at the edges. Especially the javascript is messy - but it does the job so far. You're welcome to contribute.    
+Also see the bottom for other options.
 
 
 ## Requirements
@@ -116,3 +117,13 @@ _For all, see <https://github.com/unclecheese/Mappable/network>_
 * <https://github.com/unclecheese/Mappable/tree/v3>
 * <https://github.com/gordonbanderson/Mappable>
 	* <https://github.com/gordonbanderson/Mappable/tree/dev30>
+
+
+## Other Map fields
+
+_These all look interesting, but I prefer using a map interface._
+
+* <https://github.com/kinglozzer/SilverStripe-GMapsObject>
+* <https://github.com/BetterBrief/silverstripe-googlemapfield>
+* <https://github.com/nathancox/silverstripe-mapfield>
+
