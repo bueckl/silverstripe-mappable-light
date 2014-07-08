@@ -370,7 +370,7 @@ function initLivequery() {
 			var address = t.html();
 			var latlng = new google.maps.LatLng(lat, lon);
 			statusMessage("Setting map to " + address);
-			$('.geocodedSearchResults').html('');
+			$('.geocodedSearchResults').remove();
 //         $('#Form_EditForm_Latitude').val(lat);
 //         $('#Form_EditForm_Longitude').val(lon);
 
