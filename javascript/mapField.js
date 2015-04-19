@@ -285,20 +285,26 @@ function searchForAddress(address) {
 
 
 		if (geocoder) {
-			statusMessage("Searching for:" + address);
+			//statusMessage("Suche nach:" + address);
 			geocoder.geocode({
 				'address': address
 			}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
+					
 					var l = results.length;
-
-					if (l > 0) {
-						statusMessage("Places found");
-					} else if (l == 0) {
-						errorMessage("No places found");
-					}
+					
 					var html = '<div class="geocodedSearchResults field">';
-					html = html +'<p>' + l + ' location(s) found. Please select a location below  by clicking the link:</p>';
+					
+					if (l > 0) {
+						// statusMessage("Google hat den Ort gefunden!");
+						//html = html +'<p class="message bad">Google hat keinen Ort mit diesem Namen gefunden!</p>';
+					} else if (l == 0) {
+						//errorMessage("Google hat keinen Ort mit diesem Namen gefunden!");
+						html = html +'<p class="message bad">Google hat keinen Ort mit diesem Namen gefunden!</p>';
+						
+					}
+
+					html = html +'<p class="message good">Google hat ' + l + ' Ort(e) gefunden. Bitte klicken Sie auf den untenstehenden Link um Ihren Wunschort auszuwählen:</p>';
 					html = html + '<ul class="">';
 					//mapSearchResults
 					$.each(results, function(index, value) {
@@ -307,19 +313,19 @@ function searchForAddress(address) {
 							address.push(v.long_name);
 						});
 
-						html = html + '<li lat="' + value.geometry.location.lat() + '" lon="' + value.geometry.location.lng() + '">' + address + ' (<span class="select">select</span>)</li>';
+						html = html + '<li lat="' + value.geometry.location.lat() + '" lon="' + value.geometry.location.lng() + '">' + address + ' (<span class="select">Ort auswählen</span>)</li>';
 					});
 
 					html = html + "</ul>";
 					html = html + "</div>";
 
 					//$('#mapSearchResults').html(html);
-					$('#mapSearch').after(html);
+					$('#mapSearchMessage').empty().html(html);
 
 
 					//  setMarker(results[0].geometry.location.lat);
 				} else {
-					errorMessage("Unable to find any geocoded results");
+					errorMessage("Googel liefert momentan keine Ergebnisse");
 				}
 			});
 
@@ -369,7 +375,7 @@ function initLivequery() {
 			var lon = t.attr("lon");
 			var address = t.html();
 			var latlng = new google.maps.LatLng(lat, lon);
-			statusMessage("Setting map to " + address);
+			//statusMessage("Setting map to " + address);
 			$('.geocodedSearchResults').remove();
 //         $('#Form_EditForm_Latitude').val(lat);
 //         $('#Form_EditForm_Longitude').val(lon);
