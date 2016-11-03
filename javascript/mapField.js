@@ -417,7 +417,7 @@ function initLivequery() {
 		if (gMapsAPIloaded == false) {
 			var script = document.createElement("script");
 			script.type = "text/javascript";
-			script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=gmloaded";
+			script.src = "https://maps.googleapis.com/maps/api/js?sensor=false&callback=gmloaded";
 			document.body.appendChild(script);
 
 			gMapsAPIloaded = true;
