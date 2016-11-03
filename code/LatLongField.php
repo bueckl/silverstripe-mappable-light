@@ -126,7 +126,7 @@ var zoomFieldName = "'.$this->zoomField.'";
 
 	public function geocode( SS_HTTPRequest $r ) {
 		if ( $address = $r->requestVar( 'address' ) ) {
-			if ( $json = @file_get_contents( "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=".urlencode( $address ) ) ) {
+			if ( $json = @file_get_contents( "https://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=".urlencode( $address ) ) ) {
 				$response = Convert::json2array( $json );
 				$location = $response['results'][0]->geometry->location;
 				return new SS_HTTPResponse( $location->lat.",".$location->lng );

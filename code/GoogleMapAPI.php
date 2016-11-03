@@ -403,7 +403,7 @@ class GoogleMapAPI extends ViewableData
     public function geocoding($address) 
     {
         $encodeAddress = urlencode($address);
-        $url = "http://maps.google.com/maps/geo?q=".$encodeAddress."&output=csv&key=".$this->googleMapKey;
+        $url = "https://maps.google.com/maps/geo?q=".$encodeAddress."&output=csv&key=".$this->googleMapKey;
         
         if(function_exists('curl_init')) {
             $data = $this->getContent($url);
@@ -595,7 +595,7 @@ class GoogleMapAPI extends ViewableData
 		
 		//adding in a callback for jochen:
         //$this->content .= '<script src="http://maps.google.com/maps?hl='. $this->lang.'&file=api&amp;v=2&amp;key='.$this->googleMapKey.'" type="text/javascript">';
-		$this->content .= '<script src="http://maps.google.com/maps?hl='. $this->lang.'&file=api&amp;v=2&amp;callback=load&amp;key='.$this->googleMapKey.'" type="text/javascript">';
+		$this->content .= '<script src="https://maps.google.com/maps?hl='. $this->lang.'&file=api&amp;v=2&amp;callback=load&amp;key='.$this->googleMapKey.'" type="text/javascript">';
         $this->content .= '</script>'."\n";
         
         // Clusterer JS
