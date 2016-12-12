@@ -51,14 +51,14 @@ function initMap() {
 	 var lonField = $('input[name='+gm.attr('data-lonfieldname')+']'); // $('input[name="$LonFieldName"]');
 	 var zoomField = $('input[name='+gm.attr('data-zoomfieldname')+']'); // $('input[name="$ZoomFieldName"]');
 	 var guidePointsAttr = gm.attr('data-GuidePoints');
-	 console.log(guidePointsAttr);
+	 //console.log(guidePointsAttr);
 
 	 var guidePoints = new Array();
 	 if (typeof guidePointsAttr != "undefined") {
 		 guidePoints = JSON.parse(guidePointsAttr);
 	 }
 
-	 console.log('T1');
+	 //console.log('T1');
 
 	 //console.log("latitude field");
 	 //console.log(latField);
@@ -80,7 +80,8 @@ function initMap() {
 
 		map = new google.maps.Map(document.getElementById("GoogleMap"), myOptions);
 		bounds = new google.maps.LatLngBounds ();
-
+		
+		//console.log(map);
 
 		if (guidePoints.length) {
 		 console.log("GP T1");
@@ -278,6 +279,7 @@ var gm = $('#GoogleMap');
 
 
 function searchForAddress(address) {
+
 	(function($) {
 
 		var geocoder = new google.maps.Geocoder();
@@ -325,7 +327,7 @@ function searchForAddress(address) {
 
 					//  setMarker(results[0].geometry.location.lat);
 				} else {
-					errorMessage("Googel liefert momentan keine Ergebnisse");
+					errorMessage("Google liefert momentan keine Ergebnisse");
 				}
 			});
 
@@ -359,9 +361,14 @@ function initLivequery() {
 			//var location = $('#location_search').val();
 
 			//hardcoding to address:
-			var location = $('[name="Address"]').val();
-
-			searchForAddress(location);
+			//var location = $('[name="Address"]').val();
+			
+			// HACK JOCHEN
+			var location1 = $('[name="OpenImmoPlz"]').val();
+			var location2 = $('[name="OpenImmoOrt"]').val();
+			var searchString = location1 + location2;
+			
+			searchForAddress(searchString);
 			return false;
 		});
 
@@ -413,7 +420,7 @@ function initLivequery() {
 (function($) {
 
 	function loadGoogleMapsAPI() {
-		console.log(gMapsAPIloaded);
+		//console.log(gMapsAPIloaded);
 		if (gMapsAPIloaded == false) {
 			var script = document.createElement("script");
 			script.type = "text/javascript";
