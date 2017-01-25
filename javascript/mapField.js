@@ -51,14 +51,14 @@ function initMap() {
 	 var lonField = $('input[name='+gm.attr('data-lonfieldname')+']'); // $('input[name="$LonFieldName"]');
 	 var zoomField = $('input[name='+gm.attr('data-zoomfieldname')+']'); // $('input[name="$ZoomFieldName"]');
 	 var guidePointsAttr = gm.attr('data-GuidePoints');
-	 console.log(guidePointsAttr);
+	 //console.log(guidePointsAttr);
 
 	 var guidePoints = new Array();
 	 if (typeof guidePointsAttr != "undefined") {
 		 guidePoints = JSON.parse(guidePointsAttr);
 	 }
 
-	 console.log('T1');
+	 //console.log('T1');
 
 	 //console.log("latitude field");
 	 //console.log(latField);
@@ -278,6 +278,7 @@ var gm = $('#GoogleMap');
 
 
 function searchForAddress(address) {
+
 	(function($) {
 
 		var geocoder = new google.maps.Geocoder();
@@ -285,7 +286,9 @@ function searchForAddress(address) {
 
 
 		if (geocoder) {
-			//statusMessage("Suche nach:" + address);
+			
+			statusMessage("Suche nach:" + address);
+			
 			geocoder.geocode({
 				'address': address
 			}, function(results, status) {
@@ -296,10 +299,10 @@ function searchForAddress(address) {
 					var html = '<div class="geocodedSearchResults field">';
 					
 					if (l > 0) {
-						// statusMessage("Google hat den Ort gefunden!");
+						statusMessage("Google hat den Ort gefunden!");
 						//html = html +'<p class="message bad">Google hat keinen Ort mit diesem Namen gefunden!</p>';
 					} else if (l == 0) {
-						//errorMessage("Google hat keinen Ort mit diesem Namen gefunden!");
+						errorMessage("Google hat keinen Ort mit diesem Namen gefunden!");
 						html = html +'<p class="message bad">Google hat keinen Ort mit diesem Namen gefunden!</p>';
 						
 					}
@@ -325,7 +328,7 @@ function searchForAddress(address) {
 
 					//  setMarker(results[0].geometry.location.lat);
 				} else {
-					errorMessage("Googel liefert momentan keine Ergebnisse");
+					errorMessage("Google liefert momentan keine Ergebnisse. Bitte wiederholen Sie Ihre Suche oder ändern Sie Ihre Suchparameter.");
 				}
 			});
 
@@ -360,7 +363,6 @@ function initLivequery() {
 
 			//hardcoding to address:
 			var location = $('[name="Address"]').val();
-
 			searchForAddress(location);
 			return false;
 		});
