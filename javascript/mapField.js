@@ -419,7 +419,7 @@ function initLivequery() {
 		if (gMapsAPIloaded == false) {
 			var script = document.createElement("script");
 			script.type = "text/javascript";
-			script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBua0PGjaUTmcftfb0gmRdssrW1Avp9CQU&callback=gmloaded";
+			script.src = "https://maps.googleapis.com/maps/api/js?&callback=gmloaded";
 			document.body.appendChild(script);
 
 			gMapsAPIloaded = true;
