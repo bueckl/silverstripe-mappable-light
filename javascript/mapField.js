@@ -415,7 +415,7 @@ function initLivequery() {
 (function($) {
 
 	function loadGoogleMapsAPI() {
-		console.log(gMapsAPIloaded);
+		//console.log(gMapsAPIloaded);
 		if (gMapsAPIloaded == false) {
 			var script = document.createElement("script");
 			script.type = "text/javascript";
