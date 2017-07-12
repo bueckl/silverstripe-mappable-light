@@ -328,6 +328,7 @@ function searchForAddress(address) {
 
 					//  setMarker(results[0].geometry.location.lat);
 				} else {
+                    console.log( google.maps.GeocoderStatus );
 					errorMessage("Google liefert momentan keine Ergebnisse. Bitte wiederholen Sie Ihre Suche oder ändern Sie Ihre Suchparameter.");
 				}
 			});
