@@ -282,6 +282,7 @@ function searchForAddress(address) {
 	(function($) {
 
 		var geocoder = new google.maps.Geocoder();
+		var elevator = new google.maps.ElevationService();
 
 
 		if (geocoder) {
