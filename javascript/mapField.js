@@ -420,7 +420,7 @@ function initLivequery() {
 		if (gMapsAPIloaded == false) {
 			var script = document.createElement("script");
 			script.type = "text/javascript";
-			script.src = "https://maps.googleapis.com/maps/api/js?&callback=gmloaded";
+			script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAD-fDoiRGcVJMXDnVbVLySk65XcPjEjy4&callback=gmloaded";
 			document.body.appendChild(script);
 
 			gMapsAPIloaded = true;
